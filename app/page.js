@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Button, Stack, TextField } from "@mui/material";
+import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 import { useState } from "react";
 
 export default function Home() {
@@ -55,6 +55,84 @@ export default function Home() {
   };
 
   return (
+    <Box
+      width="100vw"
+      height="100vh"
+      display="flex"
+      flexDirection="row"
+      bgcolor="lightgray"
+    >
+      {/* Left side content */}
+      <Box
+        flexGrow={1}
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        py={4}
+      >
+        <Typography variant="h4">Add your text or content here</Typography>
+      </Box>
+
+      {/* Right side content */}
+      <Stack
+        direction={"column"}
+        width="500px"
+        height="auto"
+        border="1px solid black"
+        p={4}
+        spacing={3}
+        bgcolor="white"
+        flexShrink={0}
+      >
+        <Stack
+          direction={"column"}
+          spacing={2}
+          flexGrow={1}
+          overflow="auto"
+          maxHeight="100%"
+          //bgcolor="white"
+          py={2}
+        >
+          {messages.map((message, index) => (
+            <Box
+              key={index}
+              display="flex"
+              justifyContent={
+                message.role === "assistant" ? "flex-start" : "flex-end"
+              }
+            >
+              <Box
+                bgcolor={
+                  message.role === "assistant"
+                    ? "primary.main"
+                    : "secondary.main"
+                }
+                color="white"
+                borderRadius={16}
+                p={3}
+              >
+                {message.content}
+              </Box>
+            </Box>
+          ))}
+        </Stack>
+        <Stack direction="row" spacing={2}>
+          <TextField
+            label="Message"
+            fullWidth
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            sx={{ backgroundColor: "white" }}
+          />
+          <Button variant="contained" onClick={sendMessage}>
+            Send
+          </Button>
+        </Stack>
+      </Stack>
+    </Box>
+  );
+}
+/*return (
     <Box
       width="100vw"
       height="100vh"
@@ -118,4 +196,4 @@ export default function Home() {
       </Stack>
     </Box>
   );
-}
+}*/
