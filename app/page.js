@@ -7,7 +7,7 @@ export default function Home() {
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
-      content: "Hi! I'm the Headstarter support assistant. How can I help you today?",
+      content: "Assalamualaikum! I'm the Quranic Insights support assistant. How can I help you today?",
     },
   ])
   const [message, setMessage] = useState('')
@@ -19,7 +19,7 @@ export default function Home() {
       { role: 'user', content: message },  // Add the user's message to the chat
       { role: 'assistant', content: '' },  // Add a placeholder for the assistant's response
     ])
-  
+
     // Send the message to the server
     const response = fetch('/api/chat', {
       method: 'POST',
@@ -100,11 +100,11 @@ export default function Home() {
         </Stack>
         <Stack direction="row" spacing={2}>
           <TextField
-            label="message"
+            label="Message"
             fullWidth
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            sx={{ backgroundColor: 'grey' }}
+            sx={{ backgroundColor: 'white' }}
           />
           <Button variant="contained" onClick={sendMessage}>Send</Button>
         </Stack>
