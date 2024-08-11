@@ -1,6 +1,17 @@
 "use client";
-
-import { Box, Button, Stack, TextField, Typography } from "@mui/material";
+import React from "react";
+import {
+  Box,
+  Stack,
+  Typography,
+  TextField,
+  Button,
+  List,
+  ListItem,
+  ListItemText,
+  Avatar,
+  Link,
+} from "@mui/material";
 import { useState } from "react";
 
 export default function Home() {
@@ -12,6 +23,30 @@ export default function Home() {
     },
   ]);
   const [message, setMessage] = useState("");
+  const teamMembers = [
+    {
+      name: "Anour Ibrahim",
+      //image: "/public/image/anour.jpg",
+      linkedin: "https://www.linkedin.com/in/anour-ibrahim-b11573234/",
+    },
+    {
+      name: "Shafin Rehman",
+      image:
+        "https://media.licdn.com/dms/image/D4E03AQHcfNzn17-X9Q/profile-displayphoto-shrink_400_400/0/1722036861629?e=1729123200&v=beta&t=OdpZh57VZRhdFSHv2nX6HzR9OoQpLAfmXSwcOS7-BUk",
+      linkedin: "https://www.linkedin.com/in/shafin-rehman/",
+    },
+    {
+      name: "Rabigh Ahmed",
+      //image: "/public/image/rabigh.jpg",
+      linkedin: "https://www.linkedin.com/in/rabigh-ahmed-24a413263/",
+    },
+    {
+      name: "Mohammad Kabir",
+      image:
+        "https://media.licdn.com/dms/image/D4E03AQFtBmouEbWgNA/profile-displayphoto-shrink_400_400/0/1722358628789?e=1729123200&v=beta&t=IWfcNk3V3WcqhqTpgutH3zr-Y2Ngm_1dbdO_B6bGS7E",
+      linkedin: "https://www.linkedin.com/in/mohammad-kabir-196a5020a//",
+    },
+  ];
 
   const sendMessage = async () => {
     setMessage(""); // Clear the input field
@@ -60,17 +95,76 @@ export default function Home() {
       height="100vh"
       display="flex"
       flexDirection="row"
-      bgcolor="lightgray"
+      bgcolor="black"
     >
       {/* Left side content */}
       <Box
         flexGrow={1}
         display="flex"
-        alignItems="center"
+        flexDirection="column"
+        alignItems="flex-start"
         justifyContent="center"
-        py={4}
+        p={4}
       >
-        <Typography variant="h4">Add your text or content here</Typography>
+        <Typography
+          variant="h1"
+          gutterBottom
+          sx={{ fontFamily: "Playfair Display, serif" }}
+          color="#bdbdbd"
+        >
+          ISLAMfromAI
+        </Typography>
+        <Typography variant="h6" gutterBottom>
+          Making learning about Islam much easier with the chatbot that is
+          dedicated to tell you about the religion and the way of life.
+        </Typography>
+        <List>
+          <ListItem>
+            <ListItemText primary="Ask questions about the verses from the Quran and understand the meaning" />
+          </ListItem>
+          <ListItem>
+            <ListItemText primary="Ask about authentic Hadith, its narration, and the context" />
+          </ListItem>
+          <ListItem>
+            <ListItemText primary="Get answers to all your questions about the Quran, Hadith, and Islamic teachings with ease." />
+          </ListItem>
+        </List>
+
+        {/* Team Members - Profile Photos */}
+        <Box
+          flexGrow={1}
+          display="flex"
+          flexDirection="column"
+          alignItems="flex-start"
+          justifyContent="center"
+          p={4}
+          border="1px solid white"
+        >
+          <Typography
+            variant="h6"
+            sx={{ fontFamily: "Playfair Display, serif" }}
+            gutterBottom
+          >
+            The Developers
+          </Typography>
+          <Stack direction="row" spacing={4} mt={4}>
+            {teamMembers.map((member, index) => (
+              <Link
+                href={member.linkedin}
+                key={index}
+                target="_blank"
+                rel="noopener noreferrer"
+                sx={{ textDecoration: "none" }}
+              >
+                <Avatar
+                  alt={member.name}
+                  src={member.image}
+                  sx={{ width: 80, height: 80, border: "2px solid #fff" }}
+                />
+              </Link>
+            ))}
+          </Stack>
+        </Box>
       </Box>
 
       {/* Right side content */}
@@ -81,7 +175,7 @@ export default function Home() {
         border="1px solid black"
         p={4}
         spacing={3}
-        bgcolor="white"
+        bgcolor="#e0e0e0"
         flexShrink={0}
       >
         <Stack
@@ -90,7 +184,6 @@ export default function Home() {
           flexGrow={1}
           overflow="auto"
           maxHeight="100%"
-          //bgcolor="white"
           py={2}
         >
           {messages.map((message, index) => (
